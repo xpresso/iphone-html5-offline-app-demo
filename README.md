@@ -39,7 +39,7 @@ Let's assume the ip address of your server is `192.168.1.100`
 
 Try the process of adding an app to your home screen right now with [Backchannel: Offline Red Green App](http://kentbrewster.com/backchannel/bc.html)
 
-Annotated Directory Structure
+Annotated Directory Structure of an app
 ----
 
 From the document root
@@ -68,17 +68,21 @@ From the document root
         // iOS 3 added support for startup screens
         apple-touch-startup-image.png
 
-        behavior.js
-        db/
-            flashcards.js
-            ice-cream.png
-            pizza.png
-            soda.png
-        javascripts/
-            flashcards.js
-            jquery.min.js
+        pages/
+            article1.html
+            article2.html
 
-        presentation.css
+        offline-assets/
+            offline.html
+            libs.js
+            app.js
+            logo.png
+            style.css
+
+        online-assets/
+            search
+            db.json
+            auth
 
 Note: It might be useful to store all assets which will be available offline in a folder called "assets" and write a script to walk the directory and produce the cache manifest (always with the current datestamp) including those assets. This will save you a lot of headache.
 
@@ -97,27 +101,24 @@ call this `main.manifest`. DO NOT call it `cache.manifest` (works in Chrome, not
     CACHE:
     # list ALL assets which should be downloaded for offline use
     # no pattern matching is supported
-    /behavior.js
-    /db/flashcards.js
-    /db/ice-cream.png
-    /db/pizza.png
-    /db/soda.png
-    /javascripts/flashcards.js
-    /javascripts/jquery.min.js
-    /presentation.css
+    /offline-assets/offline.html
+    /offline-assets/libs.js
+    /offline-assets/app.js
+    /offline-assets/logo.png
+    /offline-assets/style.css
 
     FALLBACK:
     # give the offline equivalent of a 404
     # the first item is always treated as a prefix pattern
     # the second is always treated as the resource to provide
-    /images/ /images/offline.png
-    /javascripts/ /javascripts/offline.js
+    /pages/ /offline-assets/offline.html
     / /offline.html
 
     NETWORK:
     # list any assets which are allowed to be fetched 
     # from an online source even after the caching is complete
     # can use * or prefix pattern matching
+    /online-assets/
     http://www.google.com/api/search
 
 Fun fact: You don't have to use `\r\n` in the Cache Manifest. `\r` and `\n` are also okay.
