@@ -34,7 +34,7 @@ var game = matchingCards(flashcards);
 
 $(function () {
   var q = game.get();
-  $("img").attr('src', '/db/' + q);
+  $("img").attr('src', 'db/' + q);
   $("body").delegate('form#flash', 'submit', function (ev) {
     ev.preventDefault();
     if (game.test($("#answer").val())) {
@@ -44,9 +44,9 @@ $(function () {
         game = matchingCards(flashcards);
         q = game.get();
       }
-      $("img").attr('src', '/db/' + q);
+      $("img").attr('src', 'db/' + q);
       //$("img").hide();
-      //$("img[src='" + '/db/' + q  + "']").show();
+      //$("img[src='" + 'db/' + q  + "']").show();
     } else {
       alert("Wrongo " + $("#answer").val() + ' ' + game.peek());
     }
