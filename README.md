@@ -24,6 +24,19 @@ Let's assume the ip address of your server is `192.168.1.100`
   0. visit http://192.168.1.100:3080
   0. Click `[->]` icon and select "Add to Home Screen"
 
+**Android**
+
+  0. visit http://192.168.1.100:3080
+  0. Click `menu`
+  0. Click `Bookmarks`
+  0. Click `Add`
+  0. Exit to Home Screen
+  0. Click and Hold in empty space
+  0. Select `Shortcut`
+  0. Select `Bookmark`
+  0. Click the app
+  0. Shoot yourself... users will never be able to figure out all of these steps - I can barely do it!
+
 Try the process of adding an app to your home screen right now with [Backchannel: Offline Red Green App](http://kentbrewster.com/backchannel/bc.html)
 
 Annotated Directory Structure
