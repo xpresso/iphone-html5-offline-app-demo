@@ -17,12 +17,17 @@ You just have to make sure that `main.manifest` loads with the mime-type `text/c
     npm install spark
     spark
 
+Putting an Offline App on the Home Screen
+----
+
+Let's assume the ip address of your server is `192.168.1.100` running on port `3080`.
+
+You'll visit `http://192.168.1.100:3080` and choose one of the apps and then add it to the **Home Screen** as follows:
+
 **iPhone**
 
-Let's assume the ip address of your server is `192.168.1.100`
-
-  0. visit http://192.168.1.100:3080
-  0. Click `[->]` icon and select "Add to Home Screen"
+  0. Click `[->]` icon in Safari
+  0. Select "Add to Home Screen"
 
 **Android**
 
