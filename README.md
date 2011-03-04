@@ -1,7 +1,15 @@
 iPhone HTML5 Offline App Demo
 ====
 
-Node.JS
+**Node.JS server**
+
+  npm install spark
+  spark
+
+**iPhone**
+
+  http://localhost:3080
+  Click `[->]` icon and select "Add to Home Screen"
 
 Resources
 ====
