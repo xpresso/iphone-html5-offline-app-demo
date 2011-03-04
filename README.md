@@ -82,6 +82,46 @@ From the document root
 
 Note: It might be useful to store all assets which will be available offline in a folder called "assets" and write a script to walk the directory and produce the cache manifest (always with the current datestamp) including those assets. This will save you a lot of headache.
 
+Cache Manifest
+----
+call this `main.manifest`. DO NOT call it `cache.manifest` (works in Chrome, not on iPhone)
+
+    CACHE MANIFEST
+    # That must be the very first line
+    # comments must be on their own line
+
+    # version 0.0.1
+    # bump the version any time you edit ANY of the CACHE assets
+    # otherwise they won't get updated when the app comes back online
+    
+    CACHE:
+    # list ALL assets which should be downloaded for offline use
+    # no pattern matching is supported
+    /behavior.js
+    /db/flashcards.js
+    /db/ice-cream.png
+    /db/pizza.png
+    /db/soda.png
+    /javascripts/flashcards.js
+    /javascripts/jquery.min.js
+    /presentation.css
+
+    FALLBACK:
+    # give the offline equivalent of a 404
+    # the first item is always treated as a prefix pattern
+    # the second is always treated as the resource to provide
+    /images/ /images/offline.png
+    /javascripts/ /javascripts/offline.js
+    / /offline.html
+
+    NETWORK:
+    # list any assets which are allowed to be fetched 
+    # from an online source even after the caching is complete
+    # can use * or prefix pattern matching
+    http://www.google.com/api/search
+
+Fun fact: You don't have to use `\r\n` in the Cache Manifest. `\r` and `\n` are also okay.
+
 Notes
 ====
 
