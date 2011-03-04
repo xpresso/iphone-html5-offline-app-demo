@@ -1,6 +1,9 @@
 iPhone HTML5 Offline App Demo
 ====
 
+Try it now on the [**Live Demo**](http://coolaj86.info/iphone-html5-offline-app-demo)
+
+
 Please post any mistakes or notes you have on the issues page (or fork me) and I'll add the necessary information.
 
 Apple calls these "Web Clips" (online) or "Offline Applications" (offline).
