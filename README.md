@@ -24,6 +24,8 @@ Let's assume the ip address of your server is `192.168.1.100`
   0. visit http://192.168.1.100:3080
   0. Click `[->]` icon and select "Add to Home Screen"
 
+Try the process of adding an app to your home screen right now with [Backchannel: Offline Red Green App](http://kentbrewster.com/backchannel/bc.html)
+
 Annotated Directory Structure
 ----
 
@@ -80,6 +82,6 @@ Notes
 Resources
 ====
 
+  * [Backchannel: Source Code and Instruction](http://kentbrewster.com/backchannel/)
   * [Apple: HTML5 Offline Application Cache](http://developer.apple.com/library/safari/#documentation/iPhone/Conceptual/SafariJSDatabaseGuide/OfflineApplicationCache/OfflineApplicationCache.html)
   * [Apple: Configuring Web Applications](http://developer.apple.com/library/safari/#documentation/appleapplications/reference/safariwebcontent/ConfiguringWebApplications/ConfiguringWebApplications.html)
-  * [Red Green](http://kentbrewster.com/backchannel/)
