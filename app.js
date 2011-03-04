@@ -15,7 +15,7 @@
   // TODO dynamically generate cache-manifest
 
   server = connect.createServer(
-    connect.static(path.join(__dirname, 'browser-client'))
+    connect.static(path.join(__dirname, './'))
   );
 
   module.exports = server;
