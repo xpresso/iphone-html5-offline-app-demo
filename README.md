@@ -136,14 +136,20 @@ Notes
 
 **Heachache Alert**: `Cannot Open MyApp MyApp could not be opened because it could not connect to the server.`
 
-Solution: Clear Mobile Safari's cache. `Settings => Safari => Clear Cache`
-Also, you might try renaming your URL. I.E. http://example.com/path/to/app to http://example.com/path/to/app2
+With one mistake of the `main.manifest` you may end up in an error loop that you can't get out of without clearing the cache and renaming the app.
+
+Solution:
+
+  * Clear Mobile Safari's cache. `Settings => Safari => Clear Cache`
+  * Rename your app `<title>AppName</title>`
+  * You might also try renaming your URL. I.E. http://example.com/path/to/app to http://example.com/path/to/app2
 
 How to avoid:
-Test on Chrome until your app works, then on test your iPod / iPhone / iPad.
-Particularly, always test your `main.manifest` in Chrome first. 
-With one mistake of the `main.manifest` you may end up in an error loop that you can't get out of without clearing the cache.
 
+  * Test on Chrome until your app works, then on test your iPod / iPhone / iPad.
+  * Particularly, always test your `main.manifest` in Chrome first. 
+
+**Other Notes**:
 
   * Develop on **Chrome first** - which has useful error messages - then test on Mobile Safari
   * The cache manifest may not be named `cache.manifest`. `main.manifest` works fine.
