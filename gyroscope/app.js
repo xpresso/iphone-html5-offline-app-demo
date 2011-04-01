@@ -33,6 +33,8 @@ var global = (function () { return this; }());
       setText('gamma', ev.gamma);
     }
 
+    window.addEventListener("deviceorientation", handleDeviceOrientation);
+
     if (undefined === window.DeviceMotionEvent) {
       setText('bad-news', "undefined === window.DeviceMotionEvent<br/>Your device lacks (or does not expose) an accelerometer (or gyroscope).");
       return;
@@ -40,7 +42,6 @@ var global = (function () { return this; }());
 
     setText('no', '');
     window.addEventListener("devicemotion", handleFirstDeviceMotion);
-    window.addEventListener("deviceorientation", handleDeviceOrientation);
   }
 
   window.addEventListener('load', run);
