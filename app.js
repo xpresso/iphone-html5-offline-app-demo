@@ -6,7 +6,7 @@
 
   var connect = require('connect'),
     fs = require('fs'),
-    mime = require('mime'),
+    mime = require('connect/node_modules/mime'),
     path = require('path'),
     server;
 
