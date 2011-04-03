@@ -1,6 +1,8 @@
 Offline Mobile Application
 ====
 
+See example in `main.js`
+
 Works in strict-mode on:
 
   * Android 2.2
@@ -101,3 +103,9 @@ Edit the fallback of `main.manifest` like so
     * The server is available
     * The request to the server fails
     * The `main.manifest` `FALLBACK` is not set correctly
+
+TODO
+====
+
+ * `appCache.isInstalled()` relies on localStorage. Provide strategy using cookies also
+ * most online / offline checking to own module and add event handler
