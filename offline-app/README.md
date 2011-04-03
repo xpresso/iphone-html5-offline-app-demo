@@ -58,6 +58,8 @@ Note: Events are handled with a client-side version of Node.js's `EventEmitter`
 More Intelligent Cache Events
 ====
 
+Note: If the DOM is not yet ready, these events will be queued until it is. No worries about race conditions between `DOM` and `applicationCache` in the different browsers or missing the events. 8^D
+
   * `error`
     * smarter than `applicationCache`'s `error`
     * not emitted if the browser is offline and the cache status is in a non-error state
