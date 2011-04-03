@@ -42,7 +42,11 @@ var window, global = (function () { return this; }());
 
   // utility
   function reload() {
-    appCache.swapCache();
+    try {
+      appCache.swapCache();
+    } catch(e) {
+      // Sometimes this errors out. Weird.
+    }
     window.location.reload();
   }
 
