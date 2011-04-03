@@ -187,7 +187,7 @@ var window, global = (function () { return this; }());
 
     // this only happens the very first time the app is cached
     if ('cached' === ev.type) {
-      localStorage.setItem('application-cache-cached', "true");
+      localStorage.setItem('application-cache-cached', new Date().toISOString());
     }
 
     onInstallEnd(ev);
@@ -229,7 +229,11 @@ var window, global = (function () { return this; }());
 
   // It may be possible for the update to be
   // in progress before the loading begins?
+  // XXX
+  // TODO fix to work in Firefox and Webkit at the same time
+  // XXX
   window.addEventListener('load', addOnCacheLoad, false);
+  //addOnCacheLoad();
 
   setUpdateInterval();
   setOnlineCheckInterval();
@@ -247,7 +251,7 @@ var window, global = (function () { return this; }());
   exports.setOnlineCheckInterval = setOnlineCheckInterval;
   exports.isFirstRun = isFirstRun;
   exports.isInstalled = function () {
-    !isFirstRun();
+    return !isFirstRun();
   };
   exports.load = loadEmitter;
   exports.update = updateEmitter;
