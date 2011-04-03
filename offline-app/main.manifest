@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# v0
+
+CACHE:
+index.html
+
+# JavaScripts
+require-kiss.js
+events.js
+periodic.js
+app-cache.js
+main.js
+
+#NETWORK:
+#*
+
+FALLBACK:
+online.json offline.json
+
+#/ind /index.html
+#*.jpeg /offline.jpeg
+#*.js /offline.js
+#*.html /offline.html
