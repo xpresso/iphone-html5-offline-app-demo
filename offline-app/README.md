@@ -1,6 +1,11 @@
 Offline Application
 ====
 
+Currently works in Chrome and Safari.
+
+A domReady / Cache Checking timing issue causes issues with other browsers
+Will be fixed soon.
+
 Why?
 
   * Easy abstractions for the most common use cases
@@ -78,3 +83,8 @@ Edit the fallback of `main.manifest` like so
     * The server is available
     * The request to the server fails
     * The `main.manifest` `FALLBACK` is not set correctly
+
+TODO
+====
+
+handle the problematic issue of dom loading vs not loading before cache checks
