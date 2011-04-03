@@ -1,18 +1,35 @@
-Offline Application
+Offline Mobile Application
 ====
 
-Currently works in Chrome and Safari.
+Works in strict-mode on:
 
-A domReady / Cache Checking timing issue causes issues with other browsers
-Will be fixed soon.
+  * Android 2.2
+  * Chrome 10
+  * Safari 5
+  * Firefox 4
+
+Todo
+
+  * iOS 4.3 (expected to work)
 
 Why?
 
   * Easy abstractions for the most common use cases
+  * Fixes timing issue between domReady and applicationCache checking across browsers
   * Periodically checks for updates and prompts user to allow refresh
   * Reliably determines online / offline status
   * Normalizes `applicationCache` events
   * jQuery, MooTools, etc compatible
+
+How to test it yourself
+----
+
+  0. fork this repository
+  0. load this dummy app on your phone
+  0. change the version string in the `main.manifest`
+  0. push the change
+  0. refresh the page on your phone
+  0. rinse and repeat to test the various features
 
 Install, Update on Startup, Update on Demand
 ====
@@ -32,6 +49,7 @@ The events can be handled in this fashion:
   * `appCache.load.on('EVENT', callback)` - the callback for a page-load cache check
   * `appCache.update.on('EVENT', callback)` - the callback for a periodic or forced callback
   * `appCache.checkNow()` - the same as `applicationCache.update()`
+  * `appCache.reload()` - cleanly reload the application with `applicationCache.swapCache()` and `location.refresh()`
 
 Note: Events are handled with a client-side version of Node.js's `EventEmitter`
 
@@ -83,8 +101,3 @@ Edit the fallback of `main.manifest` like so
     * The server is available
     * The request to the server fails
     * The `main.manifest` `FALLBACK` is not set correctly
-
-TODO
-====
-
-handle the problematic issue of dom loading vs not loading before cache checks

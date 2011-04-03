@@ -1,12 +1,16 @@
 CACHE MANIFEST
-# v0
+# 2011-04-03 v0
 
 CACHE:
 index.html
 
+# Stylsheets
+style.css
+
 # JavaScripts
 require-kiss.js
 events.js
+future.js
 periodic.js
 app-cache.js
 main.js
