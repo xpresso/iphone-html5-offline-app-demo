@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Am I Online?</title>
+    <script src="require-kiss.js"></script>
+    <script src="amionline-favinet-list.js"></script>
+    <script src="amionline-favinet.js"></script>
+    <script src="amionline-local.js"></script>
+    <script src="amionline-app-cache.js"></script>
+    <script src="periodic.js"></script>
+    <script>
+      var checkOnlineStatus;
+      
+      function logit(err, status) {
+        console.log(err, status);
+      }
+
+      checkOnlineStatus = require('amionline-app-cache').create(logit);
+    </script>
+  </head>
+  <body>
+    Online: <span id="online-status">unknown</span>
+    <br/>
+    Network Connection: <span id="network-status">unknown</span>
+    <br/>
+    Internet Connection: <span id="internet-status">unknown</span>
+  </body>
+</html>
