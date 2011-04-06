@@ -109,3 +109,5 @@ TODO
 
  * `appCache.isInstalled()` relies on localStorage. Provide strategy using cookies also
  * most online / offline checking to own module and add event handler
+ * Handle 'obsolete' event http://www.w3.org/TR/html5/offline.html
+  * Ensure that all "last event in sequence cases are handled correctly"
