@@ -131,6 +131,44 @@ call this `main.manifest`. DO NOT call it `cache.manifest` (works in Chrome, not
 
 Fun fact: You don't have to use `\r\n` in the Cache Manifest. `\r` and `\n` are also okay.
 
+Resolutions
+----
+
+**iPad**
+
+  * Native: 1024 x 768
+
+  * Browser Mode:
+    * Landscape: 769 x 518
+    * Portrait: 768 x 946
+
+  * HTML5 App Mode:
+    * Landscape: 1024 x 748
+    * Portrait: 768 x 1004
+
+**iPhone & iPod**
+
+  * Native: 480 x 320 @ 163 ppi (actually 960 x 640 @ 326 ppi)
+
+  * Browser Mode:
+    * L: 320 x 356
+    * P: 320 x 139
+
+  * HTML5 App Mode:
+    * L: 320 x 460
+    * P: 480 x 300
+
+  * With Browser Debugger:
+    * L: 320 x 306
+    * P: 320 x 106
+
+**HTC Thunderbolt (4.3" Android 2.2)**
+
+  * Browser Mode (No App Mode):
+    * L: 369 x 546
+    * P: 615 x 300
+
+
 Notes
 ====
 
