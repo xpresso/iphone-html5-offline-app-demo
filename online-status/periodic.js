@@ -14,7 +14,10 @@
     this.start();
   };
 
-  Periodic.prototype.start = function () {
+  Periodic.prototype.start = function (period) {
+    if (period) {
+      return this.setInterval(period);
+    }
     if (-1 !== this.interval) {
       return;
     }
@@ -28,6 +31,11 @@
     }
     clearInterval(this.interval);
     this.interval = -1;
+  };
+
+  Periodic.prototype.setInterval = function (period) {
+    this.period = period;
+    this.run();
   };
 
   function create(fn, period) {
