@@ -10,17 +10,6 @@
   // only work if a NETWORK section specifies '*' or the prefix URLs
   // for each site. Using a prefix pattern will not work.
 
-  var favilist;
-  try {
-    favilist = require('amionline-favinet-list').urls
-  } catch(e) {
-    favilist = [];
-  }
-
-  function randomize () {
-    return 0.5 - Math.random();
-  }
-
   function abort(img, i, imgs) {
     // The only way to really abort an image load
     // is with window.stop(), but this aborts any
@@ -37,27 +26,20 @@
     // img.src="";
   }
 
-  function create(cb, options) {
+  function create(respond, options) {
     options = options || {};
 
-    var newFavs = options.list || favilist.slice()
-      , oldFavs = []
-      , imgs = []
-      // if two major sites don't respond, and we *are* online
-      // there are probably big enough network issues that
-      // it would be fair enough to say that we aren't
-      , tryatonce = options.atatime || 2
-      , isChecking;
+    var favilist = options.favicons || []
+      , tryatonce = favilist.length
+      , waitfor = options.timeout || 5000
+      , imgs = [];
 
-    if (0 === newFavs.length) {
-      throw new Error('List of favicons is empty!!!');
-    }
-
-    newFavs.sort(randomize);
-
-    function respond(status) {
-      isChecking = false;
-      cb(status);
+    if (!(favilist.length > 0)) {
+      tryatonce = 2;
+      favilist = require('amionline-favinet-list').urls;
+      favilist.sort(function() { return 0.5 - Math.random(); });
+      favilist = favilist.slice(0, tryatonce);
+      //throw new Error('List of favicons is empty!!!');
     }
 
     function request(favicon) {
@@ -73,20 +55,17 @@
         // since we can't reliably abort images, we just
         // make the array size zero
         if (imgs.length !== tryatonce) {
-          console.log('ret', imgs.length, oldFavs.length, newFavs.length);
           return;
         }
         imgs.forEach(abort);
         imgs = [];
-        respond('online');
+        respond(null, 'online');
       }
 
       // if all fail, we're probably not online
       // if at least one succeeded, we're online
-      function onError() {
-        console.log('failed', favicon, imgs.length, oldFavs.length, newFavs.length);
+      function onError(ev) {
         var allFailed = true;
-
         img.failed = true;
 
         imgs.forEach(function (img) {
@@ -104,42 +83,25 @@
 
         imgs = [];
         // If all failed, we're probably offline
-        respond('offline');
+        respond(null, 'offline');
       }
 
       function onTimeout() {
-        console.log('timeout');
-        onError();
+        if (imgs.length !== tryatonce) {
+          return;
+        }
+        imgs.forEach(abort);
+        imgs = [];
+        respond(new Error('timeout after ' + waitfor + 'ms'), 'offline');
       }
 
       img.onload = onLoad;
       img.onerror = onError;
-      timeoutid = setTimeout(onTimeout, 5000);
+      timeoutid = setTimeout(onTimeout, waitfor);
       imgs.push(img);
-
-      oldFavs.push(favicon);
     }
 
-    function check() {
-      var favs;
-
-      if (true === isChecking) {
-        return;
-      }
-
-      isChecking = true;
-
-      if (newFavs.length < tryatonce) {
-        newFavs = newFavs.concat(oldFavs);
-        oldFavs = [];
-        newFavs.sort(randomize);
-      }
-
-      favs = newFavs.splice(0, tryatonce);
-      favs.forEach(request);
-    }
-
-    return check;
+    favilist.forEach(request);
   }
 
   exports.create = create;

@@ -75,7 +75,7 @@
 
       function assumeOffline() {
         xhr.abort();
-        respond(new Error("timeout after " + waitfor + "ms"));
+        respond(new Error("timeout after " + waitfor + "ms"), 'offline');
       }
 
       timeoutid = setTimeout(assumeOffline, waitfor);

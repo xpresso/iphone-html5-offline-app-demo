@@ -14,12 +14,12 @@
     document.getElementById('online-status').innerHTML = amionline.status;
   }, 'false');
 
-  amionline.on('online', function () {
+  amionline.on('online', function (err) {
     console.log('ONLINE');
     document.getElementById('online-status').innerHTML = 'online';
   });
 
-  amionline.on('offline', function () {
+  amionline.on('offline', function (err) {
     console.log('OFFLINE');
     document.getElementById('online-status').innerHTML = 'offline';
   });
@@ -31,19 +31,19 @@
     document.getElementById('browser-status').innerHTML = amionline.browserStatus;
   }, 'false');
 
-  amionline.on('browser', function (status) {
+  amionline.on('browser', function (err, status) {
     // status === amionline.browserStatus;
     console.log('BROWSER: ' + status);
     document.getElementById('browser-status').innerHTML = status;
   });
 
-  amionline.on('origin', function (status) {
+  amionline.on('origin', function (err, status) {
     // status === amionline.originStatus;
     console.log('ORIGIN: ' + status);
     document.getElementById('origin-status').innerHTML = status;
   });
 
-  amionline.on('internet', function (status) {
+  amionline.on('internet', function (err, status) {
     // status === amionline.internetStatus;
     console.log('INTERNET: ' + status);
     document.getElementById('internet-status').innerHTML = status;
