@@ -56,7 +56,13 @@
       }
 
       periodic = Periodic.create(check, howoften);
-      periodic.checkNow = periodic.run;
+      periodic.checkNow = function (a, b, c) {
+        if ('function' === typeof a) {
+          Strategy.create(a, b, c);
+        } else {
+          periodic.run();
+        }
+      };
       periodics[key] = periodic;
       return periodic;
     }
@@ -188,6 +194,9 @@
 
     emitter.use = createPeriodicEmitter;
     emitter.periodics = periodics;
+    emitter.checkNow = function (name, a, b, c) {
+      periodics[name].checkNow(a, b, c);
+    };
     emitter.start = function (name, interval) {
       periodics[name].started = true;
       periodics[name].start(interval);
