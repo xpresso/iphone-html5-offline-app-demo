@@ -7,14 +7,6 @@
     , navigator = window.navigator
     , Periodic = require('periodic');
 
-  function dummyStrategy() {
-    return {
-      create: function () {
-        return function () {};
-      }
-    };
-  }
-
   function create(options) {
     options = options || {};
 
@@ -36,8 +28,8 @@
     }
     emitter.browserStatus = emitter.status;
 
-    strategies.origin = require('amionline-origin');
-    strategies.internet = require('amionline-favinet');
+    strategies.origin = require('amionline-origin').create;
+    strategies.internet = require('amionline-favinet').create;
 
     function createPeriodicEmitter(key, Strategy, howoften) {
       var status
@@ -52,13 +44,16 @@
       }
 
       function check() {
-        Strategy.create(relay);
+        Strategy(relay);
       }
 
       periodic = Periodic.create(check, howoften);
       periodic.checkNow = function (a, b, c) {
         if ('function' === typeof a) {
-          Strategy.create(a, b, c);
+          Strategy(function (x, y, z) {
+            a(x, y, z);
+            relay(x, y, z);
+          }, b, c);
         } else {
           periodic.run();
         }

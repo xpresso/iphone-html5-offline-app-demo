@@ -3,7 +3,9 @@
 
   require('require-kiss');
 
-  var amionline = require('amionline').create();
+  var amionline = require('amionline').create()
+    , origin = require('amionline-origin');
+
   amionline.start('internet', 4000);
   amionline.start('origin', 4000);
 
@@ -66,7 +68,18 @@
   amionline.checkNow('origin');
 
 
-  setTimeout(function () {
+  // Check an arbitrary port, resource, or even a CORS / XHR2 partner device or site
+  function checkPartnerX(callback) {
+    origin.create(callback, { url: "/doesntexist" });
+  }
+  amionline.use('partnerx', checkPartnerX, 2000); // run checkPartnerX every 10 seconds
+  amionline.on('partnerx', function (err, status) {
+    console.log('partnerx', err, status);
+  });
+  amionline.start('partnerx');
+
+
+setTimeout(function () {
     amionline.stop('internet');
     amionline.stop('origin');
     console.log('stopped checks');

@@ -11,35 +11,41 @@ Am I Online?
 `amionline` can accurately provide your application with the **online status** of your user's browser.
 
     var amionline = require('amionline').create();
-    amionline.start('internet', 10000); // check internet connectivity every 10s
-    amionline.start('origin', 5000); // check origin connectivity every 5s
+    amionline.start('internet', 4000);
+    amionline.start('origin', 4000);
 
+    // Accurate
     console.log('Initial state is: ' + amionline.status);
 
-    amionline.on('online', function () {
-      console.log('Connection State is now online');
+    amionline.on('online', function (err) {
+      console.log('ONLINE');
+      document.getElementById('online-status').innerHTML = 'online';
     });
 
-    amionline.on('offline', function () {
-      console.log('Connection State is now offline');
+    amionline.on('offline', function (err) {
+      console.log('OFFLINE');
+      document.getElementById('online-status').innerHTML = 'offline';
     });
 
 
 `amionline` can also provide precise information as to the **type of connectivity**.
 
-    amionline.on('browser', function (status) {
+    amionline.on('browser', function (err, status) {
       // status === amionline.browserStatus;
-      console.log('The browser now believes that it is: ' + status);
+      console.log('BROWSER: ' + status);
+      document.getElementById('browser-status').innerHTML = status;
     });
 
-    amionline.on('origin', function (status) {
+    amionline.on('origin', function (err, status) {
       // status === amionline.originStatus;
-      console.log('In relation to the site origin we are: ' + status);
+      console.log('ORIGIN: ' + status);
+      document.getElementById('origin-status').innerHTML = status;
     });
 
-    amionline.on('internet', function (status) {
+    amionline.on('internet', function (err, status) {
       // status === amionline.internetStatus;
-      console.log('In relation to the internet we are: ' + status);
+      console.log('INTERNET: ' + status);
+      document.getElementById('internet-status').innerHTML = status;
     });
 
 
@@ -54,30 +60,39 @@ Am I Online?
 
 Example:
 
-    amionline.on('internet', function (status) {
+    amionline.on('internet', function (err, status) {
       if ('online' === status && 'offline' === amionline.originStatus) {
         console.log('Oopsies! Our own site may be experiencing technical difficulties');
       }
     });
 
+`amionline` is convenient
+
+In the case that the current status isn't current enough you can check the status immediately:
+
+    amionline.checkNow('internet', function (err, status) {
+      console.log('checkNow', 'internet', err, status);
+    });
+    amionline.checkNow('origin', function (err, status) {
+      console.log('checkNow', 'origin', err, status);
+    });
 
 `amionline` can be used to register your own connectivity checks
 (maybe you have a CORS/XHR2 peer device or a partner site)
 
-    // TODO this is not yet implemented
-
     function checkPartnerX(callback) {
       $.get('http://our.partnerx.com/status' + new Date().valueOf(), function (data) {
         if ('OK' === data) {
-          callback('online');
+          callback(null, 'online');
         } else {
-          callback('offline');
+          callback(null, 'offline');
         }
       });
+      // might register an error callback
     }
     amionline.use('partnerx', checkPartnerX, 10000); // run checkPartnerX every 10 seconds
-    amionline.on('partnerx', function (status) {
-      console.log('');
+    amionline.on('partnerx', function (err, status) {
+      console.log('partnerx', err, status);
     });
 
 Events
