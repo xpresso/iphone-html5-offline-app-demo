@@ -38,12 +38,12 @@
       document.getElementById(prefix + '-phase-total').innerHTML = 'of ' + String(ev.total);
       document.getElementById(prefix + '-progress').setAttribute('value', ev.loaded);
       document.getElementById(prefix + '-progress').setAttribute('max', ev.total);
+      document.getElementById(prefix + '-phase').innerHTML = ev.loaded;
     } else {
       console.log(ev);
       loaded = Number(document.getElementById(prefix + '-phase').innerHTML)
       document.getElementById(prefix + '-phase').innerHTML = loaded + 1;
     }
-    document.getElementById(prefix + '-phase').innerHTML = ev.loaded;
   }
   
   //

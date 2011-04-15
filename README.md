@@ -203,3 +203,4 @@ Resources
   * [Backchannel: Source Code and Instruction](http://kentbrewster.com/backchannel/)
   * [Apple: HTML5 Offline Application Cache](http://developer.apple.com/library/safari/#documentation/iPhone/Conceptual/SafariJSDatabaseGuide/OfflineApplicationCache/OfflineApplicationCache.html)
   * [Apple: Configuring Web Applications](http://developer.apple.com/library/safari/#documentation/appleapplications/reference/safariwebcontent/ConfiguringWebApplications/ConfiguringWebApplications.html)
+  * http://stackoverflow.com/questions/2634898/splash-screen-for-universal-application-for-ipad-and-iphone
